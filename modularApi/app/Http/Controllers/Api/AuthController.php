@@ -29,9 +29,7 @@ class AuthController extends Controller
 
             event(new Registered($user));
 
-            return response()->json([
-                'message' => 'Registration successful.',
-            ], 201);
+            return response()->json([$user], 201);
         } catch (\Exception $e) {
             // Gérer les erreurs 
             return response()->json([
@@ -59,10 +57,8 @@ class AuthController extends Controller
             // create token 
             $token = $user->createToken('auth_token')->plainTextToken;
             return response()->json([
-                'message' => 'Connexion succeed',
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-                'user' => Auth::user(),
+                'token' => $token,
+                'user_id' => Auth::user()->id,
             ], 200);
         } catch (\Exception $e) {
              return response()->json([
