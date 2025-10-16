@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_modules', function (Blueprint $table) {
-            $table->id();
-            $table->user_id();
-            $table->module_id();
+            // $table->id();
+            $table->interger('user_id')->unsigned();
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->interger('module_id')->unsigned();
+            $table->foreign('module_id')->references('id')->on('modules');
             $table->boolean('active');
             $table->timestamps();
         });
