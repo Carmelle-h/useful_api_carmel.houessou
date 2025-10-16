@@ -67,7 +67,7 @@ class AuthController extends Controller
         } catch (\Exception $e) {
              return response()->json([
                 'success' => false,
-                'message' => 'Error during authentification',
+                'message' => 'Error during authentification'.$e,
                 'errors' => [
                     'server' => [' Server error']
                 ]
